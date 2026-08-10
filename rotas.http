@@ -1,0 +1,40 @@
+GET http://localhost:3000/filmes
+###
+
+POST http://localhost:3000/filmes
+Content-Type: application/json
+
+{
+    "titulo": "Moana",
+    "genero": "Animacao",
+    "duracao": 107,
+    "classificacao": "Livre"
+}
+###
+
+PUT http://localhost:3000/filmes/1
+Content-Type: application/json
+
+{
+    "titulo": "Avatar 2",
+    "genero": "Ficcao",
+    "duracao": 190,
+    "classificacao": "12"
+}
+###
+
+DELETE http://localhost:3000/filmes/1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
