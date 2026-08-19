@@ -14,7 +14,7 @@ const conexao = mysql.createConnection({
     database: "alunos_filmes_03MA"
 });
 
-app.get("/filmes", (req, res) => {
+app.get("/", (req, res) => {
 
     conexao.query(
         "SELECT * FROM filmes_IsabellieLuiza",
@@ -30,7 +30,7 @@ app.get("/filmes", (req, res) => {
 
 });
 
-app.post("/filmes", (req, res) => {
+app.post("/", (req, res) => {
 
     const { titulo, genero, duracao, classificacao } = req.body;
 
@@ -49,7 +49,7 @@ app.post("/filmes", (req, res) => {
 
 });
 
-app.delete("/filmes/:id", (req, res) => {
+app.delete("/:id", (req, res) => {
 
     const id = req.params.id;
 
@@ -71,7 +71,7 @@ app.delete("/filmes/:id", (req, res) => {
 
 });
 
-app.put("/filmes/:id", (req, res) => {
+app.put("/:id", (req, res) => {
 
     const id = req.params.id;
 
