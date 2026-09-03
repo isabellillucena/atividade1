@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node --watch server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "isabellieluiza",
   "license": "ISC",
   "description": "",
   "dependencies": {

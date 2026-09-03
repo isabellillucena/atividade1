@@ -1,105 +1,83 @@
-const express = require("express");
-const mysql = require("mysql2");
-const cors = require("cors");
+import express from "express"
+import mysql2 from "mysql2"
+import cors from "cors"
 
-const app = express();
+const PORT = 3000
+const app = express()
 
-app.use(express.json());
-app.use(cors());
+app.use(express.json())
+app.use(cors())
 
-const conexao = mysql.createConnection({
+app.get("/", (request, response) => {
+    const selectCommand = "SELECT * FROM filmes_IsabellieLuiza"
+
+    database.query(selectCommand, (error, data) => {
+        if (error) {
+            console.log(error)
+            return
+        }
+
+        response.json(data)
+    })
+})
+
+app.post("/create-movie", (request, response) => {
+    const { titulo, genero, classificacao, duracao } = request.body
+
+    const insertCommand = "INSERT INTO filmes_IsabellieLuiza(titulo, genero, classificacao, duracao) VALUES (?, ?, ?, ?)"
+
+    database.query(insertCommand, [titulo, genero, classificacao, duracao], (error) => {
+        if(error) {
+            console.log(error)
+        } else {
+            response.status(201).json({
+                message: "Filme criado com sucesso!"
+            })
+        }
+    })
+})
+
+app.delete("/delete-movie/:id", (request, response) => {
+    const { id } = request.params
+
+    const deleteCommand = "DELETE FROM filmes_IsabellieLuiza WHERE id=?"
+
+    database.query(deleteCommand, [id], (error) => {
+        if (error) {
+            console.log(error)
+        } else {
+            response.json({
+                message: "Filme removido com sucesso!"
+            })
+        }
+    })
+})
+
+app.put("/edit-movie/:id", (request, response) => {
+    const { id } = request.params
+    const { titulo, genero, classificacao, duracao } = request.body
+
+    const updateCommand = "UPDATE filmes_IsabellieLuiza SET titulo = ?, genero = ?, classificacao = ?, duracao = ? WHERE id = ?"
+
+    database.query(updateCommand, [titulo, genero, classificacao, duracao, id], (error) => {
+        if (error) {
+            console.log(error)
+            return
+        }
+        
+        response.json({
+	        message: "Filme editado com sucesso!"
+        })
+    })})
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`)
+})
+
+const database = mysql2.createPool({
+    database: "alunos_filmes_03MA",
     host: "benserverplex.ddns.net",
     user: "alunos",
     password: "senhaAlunos",
-    database: "alunos_filmes_03MA"
-});
-
-app.get("/", (req, res) => {
-
-    conexao.query(
-        "SELECT * FROM filmes_IsabellieLuiza",
-        (erro, resultado) => {
-
-            if (erro) {
-                return res.status(500).json(erro);
-            }
-
-            res.json(resultado);
-        }
-    );
-
-});
-
-app.post("/", (req, res) => {
-
-    const { titulo, genero, duracao, classificacao } = req.body;
-
-    conexao.query(
-        "INSERT INTO filmes_IsabellieLuiza (titulo, genero, duracao, classificacao) VALUES (?, ?, ?, ?)",
-        [titulo, genero, duracao, classificacao],
-        (erro) => {
-
-            if (erro) {
-                return res.status(500).json(erro);
-            }
-
-            res.json("Filme cadastrado!");
-        }
-    );
-
-});
-
-app.delete("/:id", (req, res) => {
-
-    const id = req.params.id;
-
-    conexao.query(
-        "DELETE FROM filmes_IsabellieLuiza WHERE id = ?",
-        [id],
-        (erro, resultado) => {
-
-            if (erro) {
-                return res.status(500).json(erro);
-            }
-
-            res.json({
-                mensagem: "Filme excluído com sucesso!"
-            });
-
-        }
-    );
-
-});
-
-app.put("/:id", (req, res) => {
-
-    const id = req.params.id;
-
-    const {
-        titulo,
-        genero,
-        duracao,
-        classificacao
-    } = req.body;
-
-    conexao.query(
-        "UPDATE filmes_IsabellieLuiza SET titulo = ?, genero = ?, duracao = ?, classificacao = ? WHERE id = ?",
-        [titulo, genero, duracao, classificacao, id],
-        (erro, resultado) => {
-
-            if (erro) {
-                return res.status(500).json(erro);
-            }
-
-            res.json({
-                mensagem: "Filme atualizado com sucesso!"
-            });
-
-        }
-    );
-
-});
-
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
-});
+    connectionLimit: 10
+})
