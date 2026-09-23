@@ -21,7 +21,7 @@ app.get("/", (request, response) => {
     })
 })
 
-app.post("/create-movie", (request, response) => {
+app.post("/", (request, response) => {
     const { titulo, genero, classificacao, duracao } = request.body
 
     const insertCommand = "INSERT INTO filmes_IsabellieLuiza(titulo, genero, classificacao, duracao) VALUES (?, ?, ?, ?)"
@@ -37,7 +37,7 @@ app.post("/create-movie", (request, response) => {
     })
 })
 
-app.delete("/delete-movie/:id", (request, response) => {
+app.delete("/:id", (request, response) => {
     const { id } = request.params
 
     const deleteCommand = "DELETE FROM filmes_IsabellieLuiza WHERE id=?"
@@ -53,7 +53,7 @@ app.delete("/delete-movie/:id", (request, response) => {
     })
 })
 
-app.put("/edit-movie/:id", (request, response) => {
+app.put("/:id", (request, response) => {
     const { id } = request.params
     const { titulo, genero, classificacao, duracao } = request.body
 
