@@ -1,19 +1,19 @@
 async function cadastrarFilme() {
-    const inputTitle = document.getElementById("title")
-    const inputGender = document.getElementById("gender")
-    const inputAgeLimit = document.getElementById("ageLimit")
-    const inputDuration = document.getElementById("duration")
+    const inputTitulo = document.getElementById("titulo")
+    const inputGenero = document.getElementById("genero")
+    const inputClassificacao = document.getElementById("classificacao")
+    const inputDuracao = document.getElementById("duracao")
 
-    if (inputTitle.value === "" || inputGender.value === "" || inputAgeLimit.value === "" || inputDuration.value === "") {
+    if (inputTitulo.value === "" || inputGenero.value === "" || inputClassificacao.value === "" || inputDuracao.value === "") {
         alert("Preencha todas as informações!")
         return
     }
 
     const filme = {
-        title: inputTitle.value,
-        gender: inputGender.value,
-        ageLimit: inputAgeLimit.valueAsNumber,
-        duration: inputDuration.valueAsNumber
+        titulo: inputTitulo.value,
+        genero: inputGenero.value,
+        classificacao: inputClassificacao.valueAsNumber,
+        duracao: inputDuracao.valueAsNumber
     }
 
     const informacoesAEnviar = {
@@ -24,7 +24,7 @@ async function cadastrarFilme() {
         body: JSON.stringify(filme)
     }
 
-    const resposta = await fetch("http://localhost:3000/", informacoesAEnviar)
+    const resposta = await fetch("https://atividade1-ruddy.vercel.app/", informacoesAEnviar)
     const mensagemDecifrada = await resposta.json()
 
     alert(mensagemDecifrada.message)
