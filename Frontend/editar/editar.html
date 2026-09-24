@@ -7,38 +7,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <title>Cadastrar filme</title>
+    <title>Editar filme</title>
 </head>
 <body>
     <main class="container">
         <header class="topo">
             <div>
                 <a class="voltar" href="../index.html">← Voltar ao catálogo</a>
-                <h1 class="titulo-pagina">Novo <em>filme</em></h1>
+                <h1 class="titulo-pagina">Editar <em>filme</em></h1>
             </div>
         </header>
 
         <form class="formulario" id="formulario">
             <div class="campo">
                 <label for="titulo">Título</label>
-                <input type="text" id="titulo" placeholder="Ex.: Cidade de Deus">
+                <input type="text" id="titulo">
             </div>
 
             <div class="campo">
                 <label for="genero">Gênero</label>
-                <input type="text" id="genero" placeholder="Ex.: Drama">
+                <input type="text" id="genero">
             </div>
 
             <div class="linha-dupla">
                 <div class="campo">
                     <label for="duracao">Duração (min)</label>
-                    <input type="number" id="duracao" min="1" placeholder="120">
+                    <input type="number" id="duracao" min="1">
                 </div>
 
                 <div class="campo">
                     <label for="classificacao">Classificação</label>
                     <select id="classificacao">
-                        <option value="" disabled selected>Selecione</option>
+                        <option value="" disabled>Selecione</option>
                         <option value="Livre">Livre</option>
                         <option value="10">10 anos</option>
                         <option value="12">12 anos</option>
@@ -50,12 +50,12 @@
             </div>
 
             <div class="botoes">
-                <button type="submit" class="botao" id="botao-enviar">Cadastrar</button>
+                <button type="submit" class="botao" id="botao-enviar">Salvar alterações</button>
                 <a class="botao botao-secundario" href="../index.html">Cancelar</a>
             </div>
         </form>
     </main>
 
-    <script src="cadastrar.js"></script>
+    <script src="editar.js"></script>
 </body>
 </html>

@@ -1,11 +1,313 @@
-div {
-    border: 1px solid black;
-    width: 300px;
-    padding: 10px;
+:root {
+    --fundo: #13110f;
+    --superficie: #1c1916;
+    --linha: #2e2a25;
+    --texto: #ece5d8;
+    --apagado: #8f877b;
+    --destaque: #e0a43a;
+    --perigo: #d9584a;
+    --serifa: "Fraunces", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
-.filmes { 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--linha);
+}
+
+.sobretitulo,
+.voltar {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--apagado);
+    margin-bottom: 14px;
+}
+
+.voltar:hover {
+    color: var(--texto);
+}
+
+.titulo-pagina {
+    font-family: var(--serifa);
+    font-weight: 400;
+    font-size: clamp(44px, 8vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.titulo-pagina em {
+    font-style: italic;
+    color: var(--destaque);
+}
+
+/* ---------- Botões ---------- */
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    border: 1px solid var(--destaque);
+    background: var(--destaque);
+    color: #1a1408;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.botao:hover {
+    background: transparent;
+    color: var(--destaque);
+}
+
+.botao:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.botao-secundario {
+    background: transparent;
+    color: var(--texto);
+    border-color: var(--linha);
+}
+
+.botao-secundario:hover {
+    color: var(--texto);
+    border-color: var(--texto);
+}
+
+/* ---------- Lista de filmes ---------- */
+
+.contagem {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--apagado);
+    padding: 18px 0;
+}
+
+.lista {
+    list-style: none;
+}
+
+.filme {
+    display: grid;
+    grid-template-columns: 48px 1fr auto auto;
+    align-items: center;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--linha);
+}
+
+.filme:hover .filme-titulo {
+    color: var(--destaque);
+}
+
+.filme-numero {
+    color: var(--apagado);
+    font-size: 13px;
+}
+
+.filme-titulo {
+    font-family: var(--serifa);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.15;
+    transition: color 0.15s;
+}
+
+.filme-info {
+    margin-top: 6px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--apagado);
+}
+
+.classificacao {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #ffffff;
+    background: var(--linha);
+}
+
+.classificacao-L  { background: #1f9d55; }
+.classificacao-10 { background: #1e88e5; }
+.classificacao-12 { background: #f2b705; color: #1a1408; }
+.classificacao-14 { background: #ef7d00; }
+.classificacao-16 { background: #d32f2f; }
+.classificacao-18 { background: #0b0b0b; border: 1px solid #444; }
+
+.acoes {
+    display: flex;
+    gap: 18px;
+}
+
+.acao {
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 4px 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--apagado);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.acao:hover {
+    color: var(--texto);
+    border-bottom-color: var(--texto);
+}
+
+.acao-apagar:hover {
+    color: var(--perigo);
+    border-bottom-color: var(--perigo);
+}
+
+/* ---------- Formulários ---------- */
+
+.formulario {
+    display: grid;
+    gap: 32px;
+    max-width: 560px;
+    margin-top: 44px;
+}
+
+.linha-dupla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.campo {
+    display: grid;
+    gap: 8px;
+}
+
+.campo label {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--apagado);
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    font-family: var(--serifa);
+    font-size: 24px;
+    color: var(--texto);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--linha);
+    border-radius: 0;
+    padding: 8px 0;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-bottom-color: var(--destaque);
+}
+
+.campo input::placeholder {
+    color: #4a443c;
+}
+
+.campo select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238f877b' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+}
+
+.campo select option {
+    background: var(--superficie);
+    color: var(--texto);
+    font-family: var(--mono);
+    font-size: 14px;
+}
+
+.botoes {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 640px) {
+    .container {
+        padding: 36px 16px 64px;
+    }
+
+    .filme {
+        grid-template-columns: 1fr auto;
+        gap: 14px 16px;
+    }
+
+    .filme-numero {
+        display: none;
+    }
+
+    .filme-titulo {
+        font-size: 22px;
+    }
+
+    .acoes {
+        grid-column: 1 / -1;
+    }
+
+    .linha-dupla {
+        grid-template-columns: 1fr;
+    }
 }

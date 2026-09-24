@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Filmes</title>
+    <title>Catálogo de Filmes</title>
 </head>
 <body>
+    <main class="container">
+        <header class="topo">
+            <div>
+                <p class="sobretitulo">Isabelli &amp; Luiza — Catálogo</p>
+                <h1 class="titulo-pagina">Nossos <em>filmes</em></h1>
+            </div>
+            <a class="botao" href="cadastrar/cadastrar.html">Cadastrar filme</a>
+        </header>
 
-    <header>
-        <h1>Isabelli e Luiza</h1>
-        <a href="cadastrar/cadastrar.html">Cadastrar Filmes</a>
-    </header>
-
-    <section class="filmes"></section>
+        <p class="contagem" id="contagem">Carregando…</p>
+        <ul class="lista" id="lista"></ul>
+    </main>
 
     <script src="script.js"></script>
 </body>
